@@ -73,34 +73,33 @@ int main() {
 	int menuListagem;
 	
 //	aux. menus
-	bool auxMenuPrincipal;
-	char auxMenuEntradas;
-	char auxMenuSaidas;
+	int auxMenuEntradas;
+	int auxMenuSaidas;
 	char auxMenuListagem;
 	
 //	entradas
-	float salario;
-	float rendaExtra;
+	float salario = 0;
+	float rendaExtra = 0;
 	
 //	saidas
-	float despesasFixas;
-	float despesasExtras;
+	float despesasFixas = 0;
+	float despesasExtras = 0;
 	
 //	totais
-	float somaEntrada;
-	float somaSaida;	
-	float somaTotal;
+	float somaEntrada = 0;
+	float somaSaida = 0;	
+	float somaTotal = 0;
 	
 	do{
 		system("cls");
-		cout<<"\n\tO que deseja fazer?(Digitar numeros)\n\n\t1 - Cadastrar entrada\n\t2 - Cadastrar saida\n\t3 - Listar montantes\n\t0 - Sair\n\n\t";
+		cout<<"\n\tMenu Principal\n\n\tO que deseja fazer?(Digitar numeros)\n\n\t1 - Cadastrar entrada\n\t2 - Cadastrar saida\n\t3 - Listar montantes\n\t0 - Sair\n\n\t";
 		cin>> menuPrincipal;
 		
 		switch(menuPrincipal){
 			case 1 :
 				do{
 					system("cls");
-					cout<<"\n\n\tO que gostaria de cadastrar?\n\n\t1 - Salario\n\t2 - Renda Extra\n\n\t";
+					cout<<"\n\n\tO que gostaria de cadastrar?\n\n\t1 - Salario\n\t2 - Renda Extra\n\t3 - Voltar ao menu principal\n\n\t";
 					cin>> menuEntradas;
 					
 					switch(menuEntradas){
@@ -109,23 +108,26 @@ int main() {
 							cout<<"\n\n\tQual o valor do salario que deseja cadastrar?\n\n\t";
 							cin>>salario;
 							
-							cout<<"\tVoltar ao menu anterior? [s]sim [n]nao\n\t";
+							cout<<"\n\n\tVoltar para:\n\n\t1 - Menu cadastro entradas\n\t2 - Menu principal\n\n\t";
 							cin>>auxMenuEntradas;
 						break;
 						case 2 :
 							system("cls");
 							rendaExtra = CadastrarRendaExtra();
 							
-							cout<<"\tVoltar ao menu anterior? [s]sim [n]nao\n\t";
-							cin>>auxMenuEntradas;
+							cout<<"\n\n\tVoltar para:\n\n\t1 - Menu cadastro entradas\n\t2 - Menu principal\n\n\t";
+							cin>>auxMenuEntradas;		
+						break;
+						case 3 :
+							menuPrincipal;
 						break;
 					}
-				}while(auxMenuEntradas == 's');
+				}while(auxMenuEntradas == 1);
 			break;
 			case 2 :
 				do{
 					system("cls");
-					cout<<"\n\n\tO que gostaria de cadastrar?\n\n\t1 - Gasto essencial\n\t2 - Gasto nao essencial\n\n\t";
+					cout<<"\n\n\tO que gostaria de cadastrar?\n\n\t1 - Gasto essencial\n\t2 - Gasto nao essencial\n\t3 - Voltar ao menu principal\n\n\t";
 					cin>> menuSaidas;
 					
 					switch(menuSaidas){
@@ -133,18 +135,21 @@ int main() {
 							system("cls");
 							despesasFixas = cadastrarDespesasFixas();
 							
-							cout<<"\tVoltar ao menu anterior? [s]sim [n]nao\n\t";
+							cout<<"\n\n\tVoltar para:\n\n\t1 - Menu cadastro saidas\n\t2 - Menu principal\n\n\t";
 							cin>>auxMenuSaidas;
 						break;
 						case 2 :
 							system("cls");
 							despesasExtras = cadastrarDespesasExtras();
 							
-							cout<<"\tVoltar ao menu anterior? [s]sim [n]nao\n\t";
+							cout<<"\n\n\tVoltar para:\n\n\t1 - Menu cadastro saidas\n\t2 - Menu principal\n\n\t";
 							cin>>auxMenuSaidas;
+						break;						
+						case 3 :
+							menuPrincipal;
 						break;
 				}
-				}while(auxMenuSaidas == 's');
+				}while(auxMenuSaidas == 1);
 			break;
 			case 3 :
 				do{
@@ -154,11 +159,11 @@ int main() {
 					somaTotal = (somaEntrada - somaSaida);
 					
 					cout<<"\n\n\tAqui estao os valores atualizados:\n\n\tReceitas:\t"<<somaEntrada<<"\n\tDespesas:\t"<<somaSaida<<"\n\tMontante final:\t"<<somaTotal;
+				
+					cout<<"\n\n\tVoltar ao menu principal? [s]sim\n\t";
+					cin>>auxMenuListagem;
 					
-					cout<<"\n\n\tVoltar ao menu anterior? [s]sim [n]nao\n\t";
-							cin>>auxMenuListagem;
-					
-				}while(auxMenuListagem == 's');
+				}while(auxMenuListagem == 'n');
 			break;
 		}	
 	}while(menuPrincipal != 0);
